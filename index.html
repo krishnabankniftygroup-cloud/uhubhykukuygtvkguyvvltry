@@ -1440,7 +1440,7 @@
         </div>
     </section>
 
-    <!-- Footer (FIXED: Absolute Bottom, Clean End) -->
+     <!-- Footer (FIXED: Absolute Bottom, Clean End) -->
     <footer class="bg-blue-600 pt-16 border-t-8 border-blue-800 text-white w-full relative z-20 m-0 p-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
             <div class="flex flex-col gap-8 mb-12">
@@ -1507,6 +1507,80 @@
 
     <!-- Scripts -->
     <script>
+        // Language Translation Logic (UPDATED: Hinglish, No Devanagari)
+        const translations = {
+            "nav_home": { en: "Home", hi: "Home" },
+            "nav_about": { en: "About", hi: "About" },
+            "nav_process": { en: "Process", hi: "Process" },
+            "nav_plans": { en: "Plans", hi: "Plans" },
+            "hero_title": { en: "APEX OPTION TRADING RESEARCH", hi: "APEX OPTION TRADING RESEARCH" },
+            "hero_desc": { 
+                en: "Join India's Most Trusted <strong>Premium Group</strong> led by Apoorva Sharma. We provide <strong>Nifty & Bank Nifty</strong> sure-shot levels with 90% accuracy.", 
+                hi: "India ka Most Trusted <strong>Premium Group</strong> join karein jise Apoorva Sharma lead kar rahi hain. Hum <strong>Nifty & Bank Nifty</strong> ke sure-shot levels provide karte hain 90% accuracy ke saath." 
+            },
+            "btn_start": { en: "Start Journey", hi: "Shuru Karein" },
+            "btn_join": { en: "Join Premium", hi: "Premium Join Karein" },
+            "about_title": { en: "About Apex Option Trading Research", hi: "Apex Option Trading Research ke baare mein" },
+            "about_desc": { 
+                en: "<span class='text-blue-600 font-bold'>Apex Option Trading Research</span> is a SEBI Registered Investment Advisory firm founded by <span class='font-bold text-slate-900 border-b-2 border-blue-200'>Ms. Apoorva Sharma</span>.", 
+                hi: "<span class='text-blue-600 font-bold'>Apex Option Trading Research</span> ek SEBI Registered Advisory firm hai jise <span class='font-bold text-slate-900 border-b-2 border-blue-200'>Ms. Apoorva Sharma</span> ne start kiya hai." 
+            },
+            "about_obj": { en: "Our objective is to help clients make informed decisions through structured research.", hi: "Humara objective hai clients ko sahi research aur knowledge ke saath faisla lene mein madad karna." },
+            "badge_sebi": { en: "SEBI Compliant", hi: "SEBI Compliant" },
+            "badge_research": { en: "Research Backed", hi: "Research Backed" },
+            "how_earn_title": { en: "✨ How to Earn Money from Stock Market? ✨", hi: "✨ Stock Market Se Paise Kaise Kamaye? ✨" },
+            "card1_title": { en: "Join our service", hi: "Service join karein" },
+            "card1_desc": { en: "Become a member of our premium group.", hi: "Humare premium group ke member banein." },
+            "card2_title": { en: "Trade on our levels", hi: "Humare levels par trade karein" },
+            "card2_desc": { en: "Follow the exact entry/exit levels we provide.", hi: "Humare diye gaye exact entry/exit levels ko follow karein." },
+            "card3_title": { en: "Book profits", hi: "Profit book karein" },
+            "card3_desc": { en: "Execute trades and secure your profits consistently.", hi: "Trades execute karein aur consistently profit kamayein." },
+            "grow_rich_title": { en: "Grow Rich Slowly", hi: "Dheere Dheere Ameer Banein" },
+            "grow_rich_desc": { en: "The magic of compounding with consistent small profits.", hi: "Chhote profits aur compounding ka jaadoo." },
+            "power_compound": { en: "Power of 10% Monthly Return", hi: "10% Monthly Return ki Power" },
+            "compound_desc": { en: "Starting with just ₹1 Lakh capital, consistent discipline can transform your portfolio over time.", hi: "Sirf ₹1 Lakh capital se shuru karke, consistent discipline aapke portfolio ko badal sakta hai." },
+            "consistency_key": { en: "Consistency is Key", hi: "Consistency Sabse Zaruri Hai" },
+            "consistency_desc": { en: "We focus on risk management first. Protect capital, and profits will follow.", hi: "Hum pehle risk management par focus karte hain. Capital bachao, profit khud aayega." },
+            "btn_start_investing": { en: "Start Investing", hi: "Investing Shuru Karein" },
+            "join_process_title": { en: "HOW TO JOIN PREMIUM", hi: "PREMIUM KAISE JOIN KAREIN" },
+            "step1_title": { en: "Select a Plan", hi: "Plan Select Karein" },
+            "step1_desc": { en: "Choose a subscription plan that suits your trading style.", hi: "Apne trading style ke hisab se subscription plan choose karein." },
+            "step2_title": { en: "Complete Payment", hi: "Payment Karein" },
+            "step2_desc": { en: "Pay securely via UPI, Credit Card, or Net Banking.", hi: "UPI, Credit Card ya Net Banking se secure payment karein." },
+            "step3_title": { en: "Get Instant Access", hi: "Instant Access Payein" },
+            "step3_desc": { en: "You will be automatically added to our Premium Telegram/WhatsApp group.", hi: "Aap automatically humare Premium Telegram/WhatsApp group mein add ho jayenge." },
+            "price_head": { en: "Premium Plans 🚀", hi: "Premium Plans 🚀" },
+            "price_sub": { en: "Recover fees in just 1 jackpot trade.", hi: "Sirf 1 jackpot trade mein fees wapas." },
+            "plan_monthly": { en: "Monthly", hi: "Monthly" },
+            "plan_yearly": { en: "Yearly Pro", hi: "Yearly Pro" },
+            "plan_life": { en: "Lifetime", hi: "Lifetime" },
+            "badge_value": { en: "BEST VALUE", hi: "BEST VALUE" },
+            "btn_join_now": { en: "Join Now", hi: "Abhi Join Karein" },
+            "btn_grab": { en: "Grab Offer", hi: "Offer Lein" },
+            "btn_join_forever": { en: "Join Forever", hi: "Hamesha ke liye Join Karein" }
+        };
+
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[key] && translations[key][lang]) {
+                    el.innerHTML = translations[key][lang];
+                }
+            });
+            
+            // Update Toggle Button Text
+            const btnText = document.getElementById('lang-text');
+            if(btnText) btnText.innerText = lang === 'en' ? 'Hinglish' : 'English';
+        }
+
+        function toggleLanguage() {
+            const currentLang = document.documentElement.lang || 'en';
+            const newLang = currentLang === 'en' ? 'hi' : 'en';
+            setLanguage(newLang);
+        }
+
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             const btn = document.getElementById('menu-btn').querySelector('i');
@@ -1519,7 +1593,11 @@
                 btn.classList.add('fa-times');
             }
         }
+
         document.addEventListener("DOMContentLoaded", function() {
+            // Default to English
+            setLanguage('en');
+
             const videoFrames = [
                 { id: 'ethical-video', src: 'https://drive.google.com/file/d/19B4dhj3IXUk8R0p-pAlIhnab68x4du69/preview' },
                 { id: 'strategy-video-1', src: 'https://drive.google.com/file/d/1hW0vK3ydklysOC8TqaoTIu2TfZrog2eY/preview' },
@@ -1543,5 +1621,7 @@
             }
         });
     </script>
+</body>
+</html>
 </body>
 </html>
